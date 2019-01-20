@@ -10,6 +10,15 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
+struct Constants {
+    static let boy_torso = "boy_torso"
+    static let boy_head = "boy_head"
+    static let boy_upper_front_leg = "boy_upper_front_leg"
+    static let boy_front_lower_leg = "boy_front_lower_leg"
+    static let boy_front_arm_upper = "boy_front_arm_upper"
+    static let boy_front_arm_lower = "boy_front_arm_lower"
+}
+
 class GameViewController: UIViewController {
 
     override func viewDidLoad() {
