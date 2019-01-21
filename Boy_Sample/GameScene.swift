@@ -19,13 +19,13 @@ class GameScene: SKScene {
         lowerArmFront = upperArmFront.childNode(withName: Constants.boy_front_arm_lower)
         
     
-       // fistFront = lowerArmFront.childNode(withName: "fist_front")
+        fistFront = lowerArmFront.childNode(withName: "fist_front")
     }
     
     func punchAt(_ location: CGPoint) {
         let punch = SKAction.reach(to: location, rootNode: upperArmFront, duration: 0.1)
-        lowerArmFront.run(punch)
-        //fistFront.run(punch)
+        //lowerArmFront.run(punch)
+        fistFront.run(punch)
     }
     
     //MARK: - Touchies
