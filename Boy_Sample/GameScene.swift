@@ -26,7 +26,8 @@ class GameScene: SKScene {
         // responsible for performing inverse kinematics actions for a joint heriarcy reaching out to a point in space
         // the root node is highest node in the hierachy you want to rotate
         let punch = SKAction.reach(to: location, rootNode: upperArmFront, duration: 0.1)
-        //lowerArmFront.run(punch)
+        
+        // here the first is the end effector
         fistFront.run(punch)
         print("zrotation of the lower arm front is:\(lowerArmFront.zRotation)\nzrotation of upper arm front:\(upperArmFront.zRotation)")
         
