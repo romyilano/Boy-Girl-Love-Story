@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "boy_torsoo.png",
+      "filename" : "boy_torso-2.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "boy_torsoo-2.png",
+      "filename" : "boy_torso-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "boy_torsoo-1.png",
+      "filename" : "boy_torso.png",
       "scale" : "3x"
     }
   ],

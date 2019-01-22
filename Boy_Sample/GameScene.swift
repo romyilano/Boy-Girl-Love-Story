@@ -13,6 +13,11 @@ class GameScene: SKScene {
     
     var fistFront: SKNode!
     
+    var firstTouch = false
+    
+    let headLowerLimit: CGFloat = -20.0
+    let headUpperLimit: CGFloat = 80.0
+    
     override func didMove(to view: SKView) {
 
         boyTorso = childNode(withName: Constants.boy_torso)
@@ -27,6 +32,16 @@ class GameScene: SKScene {
         headNode = boyTorso.childNode(withName: "boy_head")
         
         fistFront = lowerArmFront.childNode(withName: "fist_front")
+        
+        let orientNodeConstraint = SKConstraint.orient(to: targetNode, offset: SKRange(constantValue: 0.0))
+        let range = SKRange(lowerLimit: headLowerLimit.degreesToRadians(),
+                            upperLimit: headUpperLimit.degreesToRadians())
+        let rotationConstraint = SKConstraint.zRotation(range)
+        
+        rotationConstraint.enabled = false
+        orientNodeConstraint.enabled = false
+        
+        headNode.constraints = [orientNodeConstraint, rotationConstraint]
     }
     
     let upperArmAngleDeg: CGFloat = -10
@@ -53,6 +68,14 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             boyTorso.xScale = location.x < frame.midX ? abs(boyTorso.xScale) * -1 : abs(boyTorso.xScale)
             punchAt(location)
+            targetNode.position = location
+            
+            if !firstTouch {
+                headNode.constraints!.forEach {
+                    $0.enabled = true
+                    self.firstTouch = true
+                }
+            }
         }
     }
 }
