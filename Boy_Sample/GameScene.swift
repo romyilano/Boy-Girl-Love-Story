@@ -20,6 +20,7 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
 
+        backgroundColor = UIColor(red: 231/255, green: 227/255, blue: 178/255, alpha: 1.0)
         boyTorso = childNode(withName: Constants.boy_torso)
         boyTorso.position = CGPoint(x: frame.midX, y: frame.midY + 30)
         
