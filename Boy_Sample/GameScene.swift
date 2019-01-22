@@ -7,6 +7,9 @@ class GameScene: SKScene {
     var upperTorso: SKNode!
     var upperArmFront: SKNode!
     var lowerArmFront: SKNode!
+    var headNode: SKNode!
+    
+    var targetNode = SKNode()
     
     var fistFront: SKNode!
     
@@ -21,6 +24,8 @@ class GameScene: SKScene {
         let rotationConstraintLowerArm = SKReachConstraints(lowerAngleLimit: CGFloat(0), upperAngleLimit: CGFloat(160))
         lowerArmFront.reachConstraints = rotationConstraintLowerArm
     
+        headNode = boyTorso.childNode(withName: "boy_head")
+        
         fistFront = lowerArmFront.childNode(withName: "fist_front")
     }
     
