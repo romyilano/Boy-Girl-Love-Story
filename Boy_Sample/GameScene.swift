@@ -16,7 +16,7 @@ class GameScene: SKScene {
     var firstTouch = false
     
     let headLowerLimit: CGFloat = -20.0
-    let headUpperLimit: CGFloat = 80.0
+    let headUpperLimit: CGFloat = 50.0
     
     override func didMove(to view: SKView) {
 
