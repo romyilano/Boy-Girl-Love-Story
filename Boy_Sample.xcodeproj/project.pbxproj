@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C1EA9ED21F6B01100CAE7C4 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1EA9EC21F6B01100CAE7C4 /* CGFloat+Extensions.swift */; };
 		1CEADC6C21F50FC900C05C6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEADC6B21F50FC900C05C6B /* AppDelegate.swift */; };
 		1CEADC6E21F50FC900C05C6B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1CEADC6D21F50FC900C05C6B /* GameScene.sks */; };
 		1CEADC7021F50FC900C05C6B /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1CEADC6F21F50FC900C05C6B /* Actions.sks */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C1EA9EC21F6B01100CAE7C4 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		1CEADC6821F50FC900C05C6B /* Boy_Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boy_Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CEADC6B21F50FC900C05C6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1CEADC6D21F50FC900C05C6B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				1CEADC6F21F50FC900C05C6B /* Actions.sks */,
 				1CEADC7121F50FC900C05C6B /* GameScene.swift */,
 				1CEADC7321F50FC900C05C6B /* GameViewController.swift */,
+				1C1EA9EC21F6B01100CAE7C4 /* CGFloat+Extensions.swift */,
 				1CEADC7521F50FC900C05C6B /* Main.storyboard */,
 				1CEADC7821F50FCB00C05C6B /* Assets.xcassets */,
 				1CEADC7A21F50FCB00C05C6B /* LaunchScreen.storyboard */,
@@ -210,6 +213,7 @@
 			files = (
 				1CEADC7221F50FC900C05C6B /* GameScene.swift in Sources */,
 				1CEADC7421F50FC900C05C6B /* GameViewController.swift in Sources */,
+				1C1EA9ED21F6B01100CAE7C4 /* CGFloat+Extensions.swift in Sources */,
 				1CEADC6C21F50FC900C05C6B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
