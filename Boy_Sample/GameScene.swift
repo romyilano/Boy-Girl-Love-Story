@@ -18,6 +18,8 @@ class GameScene: SKScene {
         upperArmFront = boyTorso.childNode(withName: Constants.boy_front_arm_upper)
         lowerArmFront = upperArmFront.childNode(withName: Constants.boy_front_arm_lower)
         
+        let rotationConstraintArm = SKReachConstraints(lowerAngleLimit: CGFloat(0), upperAngleLimit: CGFloat(160))
+        lowerArmFront.reachConstraints = rotationConstraintArm
     
         fistFront = lowerArmFront.childNode(withName: "fist_front")
     }
