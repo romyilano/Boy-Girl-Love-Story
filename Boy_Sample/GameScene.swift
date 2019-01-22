@@ -13,7 +13,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
 
         boyTorso = childNode(withName: Constants.boy_torso)
-        boyTorso.position = CGPoint(x: frame.midX, y: frame.midY - 30)
+        boyTorso.position = CGPoint(x: frame.midX, y: frame.midY + 30)
         
         upperArmFront = boyTorso.childNode(withName: Constants.boy_front_arm_upper)
         lowerArmFront = upperArmFront.childNode(withName: Constants.boy_front_arm_lower)
