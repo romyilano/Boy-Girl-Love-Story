@@ -5,6 +5,7 @@ import SpriteKit
 
 class GameScene: SKScene {
     
+    //MARK: - Boy
     var boyTorso: SKNode!
     
     var upperTorso: SKNode!
@@ -12,18 +13,39 @@ class GameScene: SKScene {
     var lowerArmFront: SKNode!
     var headNode: SKNode!
     
+    //MARK: - Girl
+    var girlFist: SKNode!
+    var girlTorso: SKNode!
+    var girlArmUpper: SKNode!
+    var girlArmLower: SKNode!
+    
+    var girlLegLower: SKNode!
+    var girlLegUpper: SKNode!
+    
+    // MARK: Properties
     var targetNode = SKNode()
     
     var fistFront: SKNode!
     
     var firstTouch = false
     
+    //MARK: - Head positions
     let headLowerLimit: CGFloat = -20.0
     let headUpperLimit: CGFloat = 50.0
     
+    //MARK: Lifecycle
     override func didMove(to view: SKView) {
 
         backgroundColor = UIColor(red: 231/255, green: 227/255, blue: 178/255, alpha: 1.0)
+        girlTorso = childNode(withName: "girl_torso")
+        girlArmUpper = girlTorso.childNode(withName: "girl_front_arm_upper")
+        girlArmLower = girlArmUpper.childNode(withName: "girl_arm_lower")
+        girlFist = girlArmLower.childNode(withName: "girl_first")
+        
+        girlLegUpper = girlTorso.childNode(withName: "girl_front_leg_upper")
+        girlLegLower = girlLegUpper.childNode(withName: "girl_front_leg_lower")
+        
+        //MARK: Setup - boy
         boyTorso = childNode(withName: Constants.boy_torso)
         boyTorso.position = CGPoint(x: frame.midX, y: frame.midY + 30)
         
@@ -36,7 +58,8 @@ class GameScene: SKScene {
         headNode = boyTorso.childNode(withName: "boy_head")
         
         fistFront = lowerArmFront.childNode(withName: "fist_front")
-        
+
+        //MARK: Setup - head orientation(s)
         let orientNodeConstraint = SKConstraint.orient(to: targetNode, offset: SKRange(constantValue: 0.0))
         let range = SKRange(lowerLimit: headLowerLimit.degreesToRadians(),
                             upperLimit: headUpperLimit.degreesToRadians())
