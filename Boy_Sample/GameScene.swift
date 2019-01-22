@@ -33,17 +33,45 @@ class GameScene: SKScene {
     let headLowerLimit: CGFloat = -20.0
     let headUpperLimit: CGFloat = 50.0
     
+    //MARK: Reach Constraints
+    let lowerArmAngleLimit: CGFloat = 0
+    let lowerArmUppleAngleLimit: CGFloat = 160.0
+    
+    let upperArmLowerLimit: CGFloat = 0
+    let upperArmUpperLimit: CGFloat = 0
+    
+    //MARK: - Movement
+    var lastTouchLocation: CGPoint?
+    let runningMovePtsPerSecond: CGFloat = 360.0
+    var lastUpdateTime: TimeInterval = 0
+    var dt: TimeInterval = 0
+    var velocity:CGFloat = CGFloat.zero
+    
+    //MARK: - Initializers
+    override init(size: CGSize) {
+        super.init(size: size)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("This isn't implemented yet")
+    }
+    
+    
     //MARK: Lifecycle
     override func didMove(to view: SKView) {
-
+        
         backgroundColor = UIColor(red: 231/255, green: 227/255, blue: 178/255, alpha: 1.0)
         girlTorso = childNode(withName: "girl_torso")
         girlArmUpper = girlTorso.childNode(withName: "girl_front_arm_upper")
-        girlArmLower = girlArmUpper.childNode(withName: "girl_arm_lower")
-        girlFist = girlArmLower.childNode(withName: "girl_first")
+        girlArmLower = girlArmUpper.childNode(withName: "girl_front_arm_lower")
+        girlFist = girlArmLower.childNode(withName: "girl_fist")
         
         girlLegUpper = girlTorso.childNode(withName: "girl_front_leg_upper")
         girlLegLower = girlLegUpper.childNode(withName: "girl_front_leg_lower")
+        girlArmLower.reachConstraints = SKReachConstraints(lowerAngleLimit: CGFloat(0), upperAngleLimit: CGFloat(150.0))
+        
+        let rotConstraintUpperArm = SKReachConstraints(lowerAngleLimit: upperArmLowerLimit, upperAngleLimit: upperArmUpperLimit)
+        girlArmUpper.reachConstraints = rotConstraintUpperArm
         
         //MARK: Setup - boy
         boyTorso = childNode(withName: Constants.boy_torso)
@@ -52,13 +80,13 @@ class GameScene: SKScene {
         upperArmFront = boyTorso.childNode(withName: Constants.boy_front_arm_upper)
         lowerArmFront = upperArmFront.childNode(withName: Constants.boy_front_arm_lower)
         
-        let rotationConstraintLowerArm = SKReachConstraints(lowerAngleLimit: CGFloat(0), upperAngleLimit: CGFloat(160))
+        let rotationConstraintLowerArm = SKReachConstraints(lowerAngleLimit:lowerArmAngleLimit, upperAngleLimit: lowerArmUppleAngleLimit)
         lowerArmFront.reachConstraints = rotationConstraintLowerArm
-    
+        
         headNode = boyTorso.childNode(withName: "boy_head")
         
         fistFront = lowerArmFront.childNode(withName: "fist_front")
-
+        
         //MARK: Setup - head orientation(s)
         let orientNodeConstraint = SKConstraint.orient(to: targetNode, offset: SKRange(constantValue: 0.0))
         let range = SKRange(lowerLimit: headLowerLimit.degreesToRadians(),
@@ -74,18 +102,40 @@ class GameScene: SKScene {
     let upperArmAngleDeg: CGFloat = -10
     let lowerArmAngleDeg: CGFloat = 85
     
+    override func update(_ currentTime: TimeInterval) {
+        updateTimeVariables(current: currentTime)
+    }
+    
+    private func updateTimeVariables(current currentTime: TimeInterval) {
+        if lastUpdateTime > 0 {
+            dt = currentTime - lastUpdateTime
+        } else {
+            dt = 0
+        }
+        lastUpdateTime = currentTime
+    }
+    
     func punchAt(_ location: CGPoint) {
         // responsible for performing inverse kinematics actions for a joint heriarcy reaching out to a point in space
         // the root node is highest node in the hierachy you want to rotate
-        let punch = SKAction.reach(to: location, rootNode: upperArmFront, duration: 0.1)
+        //MARK: Boy Actions
+        let punchBoy = SKAction.reach(to: location, rootNode: upperArmFront, duration: 0.1)
         
-        let restore = SKAction.run {
+        let restoreBoy = SKAction.run {
             self.upperArmFront.run(SKAction.rotate(toAngle: self.upperArmAngleDeg.degreesToRadians(), duration: 0.6))
             self.lowerArmFront.run(SKAction.rotate(toAngle: self.lowerArmAngleDeg.degreesToRadians(), duration: 0.6))
         }
         
         // here the first is the end effector
-        fistFront.run(SKAction.sequence([punch, restore]))
+        fistFront.run(SKAction.sequence([punchBoy, restoreBoy]))
+        
+        // MARK: Girl Actions
+        let reachGirl = SKAction.reach(to: location, rootNode: girlArmUpper, duration: 0.1)
+        let restoreGirl = SKAction.run {
+            self.girlArmUpper.run(SKAction.rotate(toAngle: self.upperArmAngleDeg.degreesToRadians(), duration: 0.6))
+            self.lowerArmFront.run(SKAction.rotate(byAngle: self.lowerArmAngleDeg.degreesToRadians(), duration: 0.6))
+        }
+        girlFist.run(SKAction.sequence([reachGirl, restoreGirl]))
         
     }
     
@@ -93,16 +143,30 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch: AnyObject in touches {
             let location = touch.location(in: self)
-            boyTorso.xScale = location.x < frame.midX ? abs(boyTorso.xScale) * -1 : abs(boyTorso.xScale)
+            sceneTouched(inLocation: location)
             punchAt(location)
             targetNode.position = location
             
+            //MARK: head following touch
             if !firstTouch {
                 headNode.constraints!.forEach {
                     $0.enabled = true
                     self.firstTouch = true
                 }
+                
             }
         }
     }
+    
+    //MARK: - Moveent
+    private func sceneTouched(inLocation location: CGPoint) {
+        //MARK: handle turning
+        boyTorso.xScale = location.x < frame.midX ? abs(boyTorso.xScale) * -1 : abs(boyTorso.xScale)
+        girlTorso.xScale = location.x < frame.midX ? abs(girlTorso.xScale) * -1 : abs(girlTorso.xScale)
+        
+        
+        
+    }
 }
+
+
