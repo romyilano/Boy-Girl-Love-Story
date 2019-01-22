@@ -24,14 +24,21 @@ class GameScene: SKScene {
         fistFront = lowerArmFront.childNode(withName: "fist_front")
     }
     
+    let upperArmAngleDeg: CGFloat = -10
+    let lowerArmAngleDeg: CGFloat = 85
+    
     func punchAt(_ location: CGPoint) {
         // responsible for performing inverse kinematics actions for a joint heriarcy reaching out to a point in space
         // the root node is highest node in the hierachy you want to rotate
         let punch = SKAction.reach(to: location, rootNode: upperArmFront, duration: 0.1)
         
+        let restore = SKAction.run {
+            self.upperArmFront.run(SKAction.rotate(toAngle: self.upperArmAngleDeg.degreesToRadians(), duration: 0.6))
+            self.lowerArmFront.run(SKAction.rotate(toAngle: self.lowerArmAngleDeg.degreesToRadians(), duration: 0.6))
+        }
+        
         // here the first is the end effector
-        fistFront.run(punch)
-        print("zrotation of the lower arm front is:\(lowerArmFront.zRotation)\nzrotation of upper arm front:\(upperArmFront.zRotation)")
+        fistFront.run(SKAction.sequence([punch, restore]))
         
     }
     
