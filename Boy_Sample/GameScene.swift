@@ -37,10 +37,13 @@ class GameScene: SKScene {
     var firstTouch = false
     
     //MARK: - Head positions
-    let headLowerLimit: CGFloat = -20.0
+    let headLowerLimit: CGFloat = -10.0
     let headUpperLimit: CGFloat = 50.0
     
     //MARK: Reach Constraints
+    let upperArmAngleDeg: CGFloat = -10
+    let lowerArmAngleDeg: CGFloat = 85
+    
     let lowerArmAngleLimit: CGFloat = 0
     let lowerArmUppleAngleLimit: CGFloat = 160.0
     
@@ -123,9 +126,6 @@ class GameScene: SKScene {
         let rotConstraintUpperArm = SKReachConstraints(lowerAngleLimit: upperArmLowerLimit, upperAngleLimit: upperArmUpperLimit)
         girlArmUpper.reachConstraints = rotConstraintUpperArm
     }
-    
-    let upperArmAngleDeg: CGFloat = -10
-    let lowerArmAngleDeg: CGFloat = 85
     
     override func update(_ currentTime: TimeInterval) {
         updateTimeVariables(current: currentTime)
