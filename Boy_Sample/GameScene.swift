@@ -13,7 +13,6 @@ class GameScene: SKScene {
     var lowerArmFront: SKNode!
     var headNode: SKNode!
     
-    
     //MARK: - Girl
     var girlFist: SKNode!
     var girlTorso: SKNode!
@@ -23,8 +22,10 @@ class GameScene: SKScene {
     var girlLegLower: SKNode!
     var girlLegUpper: SKNode!
     
-    var orangeNodes = [SKNode]()
-    
+    let girlZ: CGFloat = 25
+    let boyZ: CGFloat = 20
+    let orangesZ: CGFloat = 15
+  
     // MARK: - Objects
     var backgroundNode: SKNode!
     var oranges: SKNode!
@@ -76,20 +77,28 @@ class GameScene: SKScene {
         //MARK: Setup - boy
         setupBoy()
         
-        
-        
         backgroundNode = childNode(withName: "background")
-        oranges = backgroundNode.childNode(withName: "oranges")
-        
-        orangeNodes = Array(children.filter { $0.name == "orange" })
-        print("there are \(orangeNodes.count) oranges")
-        
-   
+        setupOranges()
     }
     
     //MARK: - Setup drudge work
+    private func setupOranges() {
+        oranges = backgroundNode.childNode(withName: "oranges")
+        oranges.zPosition = orangesZ
+        // add hovering animation
+        let hoverUp = SKAction.move(by: CGVector(dx: 0, dy: 3), duration: 2.5)
+        let hoverDown = SKAction.move(by: CGVector(dx: 0, dy: -3), duration: 2.5)
+        let hoverSequence = SKAction.sequence([hoverUp, hoverDown])
+      //  let rotateRight = SKAction.rotate(byAngle: CGFloat(Float.pi), duration: 5.0)
+        let rotateRight = SKAction.rotate(toAngle: CGFloat(Float.pi), duration: 5.0)
+        let hoverGroup = SKAction.group([hoverSequence])
+        let repeatHover = SKAction.repeatForever(hoverGroup)
+        oranges.run(repeatHover)
+    }
+    
     private func setupBoy() {
         boyTorso = childNode(withName: Constants.boy_torso)
+        boyTorso.zPosition = boyZ
         boyTorso.position = CGPoint(x: frame.midX, y: frame.midY + 30)
         
         upperArmFront = boyTorso.childNode(withName: Constants.boy_front_arm_upper)
@@ -102,7 +111,7 @@ class GameScene: SKScene {
         
         fistFront = lowerArmFront.childNode(withName: "fist_front")
         
-        //MARK: Setup - headrientation(s)
+        //MARK: headrientation(s)
         let orientNodeConstraint = SKConstraint.orient(to: targetNode, offset: SKRange(constantValue: 0.0))
         let range = SKRange(lowerLimit: headLowerLimit.degreesToRadians(),
                             upperLimit: headUpperLimit.degreesToRadians())
@@ -115,6 +124,7 @@ class GameScene: SKScene {
     
     private func setupGirl() {
         girlTorso = childNode(withName: "girl_torso")
+        girlTorso.zPosition = girlZ
         girlArmUpper = girlTorso.childNode(withName: "girl_front_arm_upper")
         girlArmLower = girlArmUpper.childNode(withName: "girl_front_arm_lower")
         girlFist = girlArmLower.childNode(withName: "girl_fist")
@@ -130,6 +140,8 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         updateTimeVariables(current: currentTime)
         updateGirlLocation()
+        
+        print("There are \(oranges.children.count) children in oranges")
     }
     
     private func updateTimeVariables(current currentTime: TimeInterval) {
@@ -138,7 +150,7 @@ class GameScene: SKScene {
         } else {
             dt = 0
         }
-        print("time update is:\(dt)")
+        //print("time update is:\(dt)")
         lastUpdateTime = currentTime
     }
     
@@ -147,7 +159,7 @@ class GameScene: SKScene {
         for touch: AnyObject in touches {
             let location = touch.location(in: self)
             sceneTouched(inLocation: location)
-            punchAt(location)
+            pointAt(location)
             targetNode.position = location
             
             //MARK: head following touch
@@ -175,7 +187,7 @@ class GameScene: SKScene {
         
     }
     
-    func punchAt(_ location: CGPoint) {
+    func pointAt(_ location: CGPoint) {
         // responsible for performing inverse kinematics actions for a joint heriarcy reaching out to a point in space
         // the root node is highest node in the hierachy you want to rotate
         //MARK: Boy Actions
