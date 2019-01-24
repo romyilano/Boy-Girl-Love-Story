@@ -137,11 +137,12 @@ class GameScene: SKScene {
         girlArmUpper.reachConstraints = rotConstraintUpperArm
     }
     
+    //MARK: - Time update
     override func update(_ currentTime: TimeInterval) {
         updateTimeVariables(current: currentTime)
         updateGirlLocation()
         
-        print("There are \(oranges.children.count) children in oranges")
+       // print("There are \(oranges.children.count) children in oranges")
     }
     
     private func updateTimeVariables(current currentTime: TimeInterval) {
@@ -193,13 +194,24 @@ class GameScene: SKScene {
         //MARK: Boy Actions
         let punchBoy = SKAction.reach(to: location, rootNode: upperArmFront, duration: 0.1)
         
+  
+        let delay = SKAction.wait(forDuration: 0.1)
+        let pickFruit = SKAction.run { [weak self] in
+            guard let strongSelf = self else { return }
+            if strongSelf.fistFront.intersects(strongSelf.oranges) {
+                print("Touches oranges")
+            } else {
+                print("doesn't touch oranges")
+            }
+        }
+        
         let restoreBoy = SKAction.run {
             self.upperArmFront.run(SKAction.rotate(toAngle: self.upperArmAngleDeg.degreesToRadians(), duration: 0.6))
             self.lowerArmFront.run(SKAction.rotate(toAngle: self.lowerArmAngleDeg.degreesToRadians(), duration: 0.6))
         }
         
         // here the first is the end effector
-        fistFront.run(SKAction.sequence([punchBoy, restoreBoy]))
+        fistFront.run(SKAction.sequence([punchBoy, pickFruit, delay, restoreBoy]))
         
         // MARK: Girl Actions
         let reachGirl = SKAction.reach(to: location, rootNode: girlArmUpper, duration: 0.1)
