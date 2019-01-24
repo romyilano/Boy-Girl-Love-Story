@@ -1,5 +1,5 @@
 import SpriteKit
-
+import CoreGraphics
 
 
 
@@ -45,7 +45,7 @@ class GameScene: SKScene {
     let runningMovePtsPerSecond: CGFloat = 360.0
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
-    var velocity:CGFloat = CGFloat.zero
+    var velocity = CGPoint.zero
     
     //MARK: - Initializers
     override init(size: CGSize) {
@@ -53,7 +53,7 @@ class GameScene: SKScene {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("This isn't implemented yet")
+        super.init(coder: aDecoder)
     }
     
     
@@ -104,6 +104,7 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         updateTimeVariables(current: currentTime)
+        updateGirlLocation()
     }
     
     private func updateTimeVariables(current currentTime: TimeInterval) {
@@ -113,6 +114,39 @@ class GameScene: SKScene {
             dt = 0
         }
         lastUpdateTime = currentTime
+    }
+    
+    //MARK: - Touchies
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch: AnyObject in touches {
+            let location = touch.location(in: self)
+            sceneTouched(inLocation: location)
+            punchAt(location)
+            targetNode.position = location
+            
+            //MARK: head following touch
+            if !firstTouch {
+                headNode.constraints!.forEach {
+                    $0.enabled = true
+                    self.firstTouch = true
+                }
+                
+            }
+        }
+    }
+    
+    //MARK: - Movement
+    private func sceneTouched(inLocation location: CGPoint) {
+        
+        lastTouchLocation = location
+        
+        //MARK: handle turning
+        boyTorso.xScale = location.x < frame.midX ? abs(boyTorso.xScale) * -1 : abs(boyTorso.xScale)
+       // girlTorso.xScale = location.x < frame.midX ? abs(girlTorso.xScale) * -1 : abs(girlTorso.xScale)
+       
+        moveGirlToward(location: location)
+      
+        
     }
     
     func punchAt(_ location: CGPoint) {
@@ -139,33 +173,41 @@ class GameScene: SKScene {
         
     }
     
-    //MARK: - Touchies
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch: AnyObject in touches {
-            let location = touch.location(in: self)
-            sceneTouched(inLocation: location)
-            punchAt(location)
-            targetNode.position = location
-            
-            //MARK: head following touch
-            if !firstTouch {
-                headNode.constraints!.forEach {
-                    $0.enabled = true
-                    self.firstTouch = true
-                }
-                
-            }
-        }
+      let runningGirlScale: CGFloat = 1.0
+    
+
+}
+
+//MARK: - Sprite movement
+extension GameScene {
+    func move(sprite: SKNode, velocity: CGPoint, spriteXScale: CGFloat = 1.0) {
+        let amountToMove = velocity * CGFloat(dt)
+        sprite.xScale = (velocity.x < 0) ? -spriteXScale : spriteXScale // flip
+        sprite.position += amountToMove
     }
     
-    //MARK: - Moveent
-    private func sceneTouched(inLocation location: CGPoint) {
-        //MARK: handle turning
-        boyTorso.xScale = location.x < frame.midX ? abs(boyTorso.xScale) * -1 : abs(boyTorso.xScale)
-        girlTorso.xScale = location.x < frame.midX ? abs(girlTorso.xScale) * -1 : abs(girlTorso.xScale)
+    func moveGirlToward(location: CGPoint) {
+        // start animation
+        let offset = location - girlTorso.position
+        let direction = offset.normalized()
+        velocity = direction * runningMovePtsPerSecond
+    }
+    
+    private func updateGirlLocation() {
+        guard let lastTouchLocation = lastTouchLocation else { return }
         
+        //TODO:
+        let difference = lastTouchLocation - girlTorso.position //
         
-        
+        if difference.length() <= runningMovePtsPerSecond * CGFloat(dt) {
+            // stop girl from moving
+            girlTorso.position = lastTouchLocation
+            velocity = CGPoint.zero
+            // stop walking animation
+            move(sprite: girlTorso, velocity: velocity, spriteXScale: runningGirlScale)
+        } else {
+            move(sprite: girlTorso, velocity: velocity, spriteXScale: runningGirlScale)
+        }
     }
 }
 
