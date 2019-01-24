@@ -13,6 +13,7 @@ class GameScene: SKScene {
     var lowerArmFront: SKNode!
     var headNode: SKNode!
     
+    
     //MARK: - Girl
     var girlFist: SKNode!
     var girlTorso: SKNode!
@@ -23,6 +24,10 @@ class GameScene: SKScene {
     var girlLegUpper: SKNode!
     
     var orangeNodes = [SKNode]()
+    
+    // MARK: - Objects
+    var backgroundNode: SKNode!
+    var oranges: SKNode!
     
     // MARK: Properties
     var targetNode = SKNode()
@@ -63,19 +68,24 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         
         backgroundColor = UIColor(red: 231/255, green: 227/255, blue: 178/255, alpha: 1.0)
-        girlTorso = childNode(withName: "girl_torso")
-        girlArmUpper = girlTorso.childNode(withName: "girl_front_arm_upper")
-        girlArmLower = girlArmUpper.childNode(withName: "girl_front_arm_lower")
-        girlFist = girlArmLower.childNode(withName: "girl_fist")
-        
-        girlLegUpper = girlTorso.childNode(withName: "girl_front_leg_upper")
-        girlLegLower = girlLegUpper.childNode(withName: "girl_front_leg_lower")
-        girlArmLower.reachConstraints = SKReachConstraints(lowerAngleLimit: CGFloat(0), upperAngleLimit: CGFloat(150.0))
-        
-        let rotConstraintUpperArm = SKReachConstraints(lowerAngleLimit: upperArmLowerLimit, upperAngleLimit: upperArmUpperLimit)
-        girlArmUpper.reachConstraints = rotConstraintUpperArm
+        setupGirl()
         
         //MARK: Setup - boy
+        setupBoy()
+        
+        
+        
+        backgroundNode = childNode(withName: "background")
+        oranges = backgroundNode.childNode(withName: "oranges")
+        
+        orangeNodes = Array(children.filter { $0.name == "orange" })
+        print("there are \(orangeNodes.count) oranges")
+        
+   
+    }
+    
+    //MARK: - Setup drudge work
+    private func setupBoy() {
         boyTorso = childNode(withName: Constants.boy_torso)
         boyTorso.position = CGPoint(x: frame.midX, y: frame.midY + 30)
         
@@ -89,7 +99,7 @@ class GameScene: SKScene {
         
         fistFront = lowerArmFront.childNode(withName: "fist_front")
         
-        //MARK: Setup - head orientation(s)
+        //MARK: Setup - headrientation(s)
         let orientNodeConstraint = SKConstraint.orient(to: targetNode, offset: SKRange(constantValue: 0.0))
         let range = SKRange(lowerLimit: headLowerLimit.degreesToRadians(),
                             upperLimit: headUpperLimit.degreesToRadians())
@@ -97,11 +107,21 @@ class GameScene: SKScene {
         
         rotationConstraint.enabled = false
         orientNodeConstraint.enabled = false
+             headNode.constraints = [orientNodeConstraint, rotationConstraint]
+    }
+    
+    private func setupGirl() {
+        girlTorso = childNode(withName: "girl_torso")
+        girlArmUpper = girlTorso.childNode(withName: "girl_front_arm_upper")
+        girlArmLower = girlArmUpper.childNode(withName: "girl_front_arm_lower")
+        girlFist = girlArmLower.childNode(withName: "girl_fist")
         
-        orangeNodes = Array(children.filter { $0.name == "orange" })
-        print("there are \(orangeNodes.count) oranges")
+        girlLegUpper = girlTorso.childNode(withName: "girl_front_leg_upper")
+        girlLegLower = girlLegUpper.childNode(withName: "girl_front_leg_lower")
+        girlArmLower.reachConstraints = SKReachConstraints(lowerAngleLimit: CGFloat(0), upperAngleLimit: CGFloat(150.0))
         
-        headNode.constraints = [orientNodeConstraint, rotationConstraint]
+        let rotConstraintUpperArm = SKReachConstraints(lowerAngleLimit: upperArmLowerLimit, upperAngleLimit: upperArmUpperLimit)
+        girlArmUpper.reachConstraints = rotConstraintUpperArm
     }
     
     let upperArmAngleDeg: CGFloat = -10
@@ -118,6 +138,7 @@ class GameScene: SKScene {
         } else {
             dt = 0
         }
+        print("time update is:\(dt)")
         lastUpdateTime = currentTime
     }
     
