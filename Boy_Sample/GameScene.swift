@@ -22,6 +22,8 @@ class GameScene: SKScene {
     var girlLegLower: SKNode!
     var girlLegUpper: SKNode!
     
+    var orangeNodes = [SKNode]()
+    
     // MARK: Properties
     var targetNode = SKNode()
     
@@ -95,6 +97,9 @@ class GameScene: SKScene {
         
         rotationConstraint.enabled = false
         orientNodeConstraint.enabled = false
+        
+        orangeNodes = Array(children.filter { $0.name == "orange" })
+        print("there are \(orangeNodes.count) oranges")
         
         headNode.constraints = [orientNodeConstraint, rotationConstraint]
     }
