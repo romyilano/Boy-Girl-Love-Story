@@ -6,7 +6,7 @@
 //  Copyright © 2019 Romy Ilano. All rights reserved.
 //
 
-import UIKit
+import SpriteKit
 
 class GirlScene: SKScene {
 
