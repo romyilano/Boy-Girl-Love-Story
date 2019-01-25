@@ -11,7 +11,7 @@ import SpriteKit
 class GirlScene: SKScene {
     //MARK: - Girl
     var girlFist: SKNode!
-    var girlTorso: SKNode!
+    var girlTorso: PersonNode!
     var girlArmUpper: SKNode!
     var girlArmLower: SKNode!
     
@@ -27,7 +27,7 @@ class GirlScene: SKScene {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
-        girlTorso = childNode(withName: "girl_torso")
+        girlTorso = childNode(withName: "girl_torso") as! PersonNode
         girlArmUpper = girlTorso.childNode(withName: "girl_front_arm_upper")
         girlArmLower = girlArmUpper.childNode(withName: "girl_front_arm_lower")
         girlFist = girlArmLower.childNode(withName: "girl_fist")

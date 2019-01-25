@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+
+//MARK: - Action Keys
+enum AnimationKey: String {
+    case wiggle
+    case pickup
+    case drop
+    case node
+}

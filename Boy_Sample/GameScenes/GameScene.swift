@@ -7,7 +7,7 @@ class GameScene: SKScene {
     
     
     var girlScene: SKNode!
-    var girlNode: GirlNode!
+    var girlNode: PersonNode!
     var secondGirlTorso: SKNode!
     
     //MARK: - Boy
@@ -74,25 +74,23 @@ class GameScene: SKScene {
     
     
     //MARK: Lifecycle
+    //MARK: - Setup
     override func didMove(to view: SKView) {
         
         backgroundColor = UIColor(red: 231/255, green: 227/255, blue: 178/255, alpha: 1.0)
         setupGirl()
-        
-        //MARK: Setup - boy
+  
         setupBoy()
         
         girlScene = childNode(withName: "girl_shared")
-        if let girl2torso = girlScene.childNode(withName: "//girl_torso") as? GirlNode {
+        if let girl2torso = girlScene.childNode(withName: "//girl_torso") as? PersonNode {
             girlNode = girl2torso
         }
       
-        
         backgroundNode = childNode(withName: "background")
         setupOranges()
     }
     
-    //MARK: - Setup drudge work
     private func setupOranges() {
         oranges = backgroundNode.childNode(withName: "oranges")
         oranges.zPosition = orangesZ
