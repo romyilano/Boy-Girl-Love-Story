@@ -5,6 +5,11 @@ import CoreGraphics
 
 class GameScene: SKScene {
     
+    
+    var girlScene: SKNode!
+    var secondGirl: SKNode!
+    var secondGirlTorso: SKNode!
+    
     //MARK: - Boy
     var boyTorso: SKNode!
     
@@ -76,6 +81,12 @@ class GameScene: SKScene {
         
         //MARK: Setup - boy
         setupBoy()
+        
+        girlScene = childNode(withName: "girl_shared")
+        if let girl2torso = girlScene.childNode(withName: "//girl_torso") as? SKSpriteNode {
+            secondGirl = girl2torso
+        }
+      
         
         backgroundNode = childNode(withName: "background")
         setupOranges()
