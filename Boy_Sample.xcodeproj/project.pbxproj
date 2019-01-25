@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1C0DEFB721F780EA000B3C88 /* GameUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0DEFB621F780EA000B3C88 /* GameUtils.swift */; };
 		1C1EA9ED21F6B01100CAE7C4 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1EA9EC21F6B01100CAE7C4 /* CGFloat+Extensions.swift */; };
+		1C5A873021FAAA3E0025E014 /* GirlScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1C5A872F21FAAA3E0025E014 /* GirlScene.sks */; };
 		1CEADC6C21F50FC900C05C6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEADC6B21F50FC900C05C6B /* AppDelegate.swift */; };
 		1CEADC6E21F50FC900C05C6B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1CEADC6D21F50FC900C05C6B /* GameScene.sks */; };
 		1CEADC7021F50FC900C05C6B /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1CEADC6F21F50FC900C05C6B /* Actions.sks */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		1C0DEFB621F780EA000B3C88 /* GameUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameUtils.swift; sourceTree = "<group>"; };
 		1C1EA9EC21F6B01100CAE7C4 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
+		1C5A872F21FAAA3E0025E014 /* GirlScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GirlScene.sks; sourceTree = "<group>"; };
 		1CEADC6821F50FC900C05C6B /* Boy_Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boy_Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CEADC6B21F50FC900C05C6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1CEADC6D21F50FC900C05C6B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				1CEADC6F21F50FC900C05C6B /* Actions.sks */,
 				1CEADC7121F50FC900C05C6B /* GameScene.swift */,
 				1C0DEFB621F780EA000B3C88 /* GameUtils.swift */,
+				1C5A872F21FAAA3E0025E014 /* GirlScene.sks */,
 				1CEADC7321F50FC900C05C6B /* GameViewController.swift */,
 				1C1EA9EC21F6B01100CAE7C4 /* CGFloat+Extensions.swift */,
 				1CEADC7521F50FC900C05C6B /* Main.storyboard */,
@@ -194,6 +197,7 @@
 			files = (
 				1CEADC7721F50FC900C05C6B /* Main.storyboard in Resources */,
 				1CEADC6E21F50FC900C05C6B /* GameScene.sks in Resources */,
+				1C5A873021FAAA3E0025E014 /* GirlScene.sks in Resources */,
 				1CEADC7921F50FCB00C05C6B /* Assets.xcassets in Resources */,
 				1CEADC7C21F50FCB00C05C6B /* LaunchScreen.storyboard in Resources */,
 				1CEADC7021F50FC900C05C6B /* Actions.sks in Resources */,
