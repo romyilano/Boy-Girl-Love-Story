@@ -7,7 +7,7 @@ class GameScene: SKScene {
     
     
     var girlScene: SKNode!
-    var secondGirl: SKNode!
+    var girlNode: GirlNode!
     var secondGirlTorso: SKNode!
     
     //MARK: - Boy
@@ -83,8 +83,8 @@ class GameScene: SKScene {
         setupBoy()
         
         girlScene = childNode(withName: "girl_shared")
-        if let girl2torso = girlScene.childNode(withName: "//girl_torso") as? SKSpriteNode {
-            secondGirl = girl2torso
+        if let girl2torso = girlScene.childNode(withName: "//girl_torso") as? GirlNode {
+            girlNode = girl2torso
         }
       
         
