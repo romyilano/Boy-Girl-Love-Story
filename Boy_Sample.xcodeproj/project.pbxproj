@@ -74,8 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				1CEADC6D21F50FC900C05C6B /* GameScene.sks */,
-				1CEADC6F21F50FC900C05C6B /* Actions.sks */,
 				1CEADC7121F50FC900C05C6B /* GameScene.swift */,
+				1CEADC6F21F50FC900C05C6B /* Actions.sks */,
 				1C5A873121FAAA610025E014 /* GirlScene.swift */,
 				1C5A872F21FAAA3E0025E014 /* GirlScene.sks */,
 			);
