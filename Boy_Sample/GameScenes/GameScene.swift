@@ -86,6 +86,7 @@ class GameScene: SKScene {
         if let girl2torso = girlScene.childNode(withName: "//girl_torso") as? PersonNode {
             girlNode = girl2torso
         }
+        girlScene.alpha = 0
       
         backgroundNode = childNode(withName: "background")
         setupOranges()
