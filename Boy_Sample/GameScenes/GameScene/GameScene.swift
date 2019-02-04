@@ -234,7 +234,7 @@ class GameScene: SKScene {
             
             let transition = SKTransition.crossFade(withDuration: 0.9)
             if let boothScene = BoothScene(fileNamed: "BoothScene") {
-                presentingView.presentScene(boothScene, transition: transition)
+                presentingView.presentScene(booth
             }
         } else {
             print("Girl has not left the scvene : \(girlTorso.position)")

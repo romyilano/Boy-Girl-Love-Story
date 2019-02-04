@@ -10,6 +10,9 @@ import SpriteKit
 
 class GirlScene: SKScene {
     //MARK: - Girl
+    
+    var girlHead: SKNode!// girl_head
+    
     var girlFist: SKNode!
     var girlTorso: PersonNode!
     var girlArmUpper: SKNode!
@@ -27,6 +30,8 @@ class GirlScene: SKScene {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
+        girlHead = childNode(withName: "girl_head")
+        
         girlTorso = childNode(withName: "girl_torso") as! PersonNode
         girlArmUpper = girlTorso.childNode(withName: "girl_front_arm_upper")
         girlArmLower = girlArmUpper.childNode(withName: "girl_front_arm_lower")
@@ -38,6 +43,17 @@ class GirlScene: SKScene {
         
         let rotConstraintUpperArm = SKReachConstraints(lowerAngleLimit: upperArmLowerLimit, upperAngleLimit: upperArmUpperLimit)
         girlArmUpper.reachConstraints = rotConstraintUpperArm
+
     }
 
+    
+    func setupHeadOrientation(toTargetNode targetNode: SKSpriteNode, withRange headOrientationRange: SKRange) {
+        let orientNodeConstraint = SKConstraint.orient(to: targetNode, offset: SKRange(constantValue: 0.0))
+        let rotationConstraint = SKConstraint.zRotation(headOrientationRange)
+        
+        rotationConstraint.enabled = false
+        orientNodeConstraint.enabled = false
+        // we wait until the 1st time to enable
+        girlHead.constraints = [orientNodeConstraint, rotationConstraint]
+    }
 }

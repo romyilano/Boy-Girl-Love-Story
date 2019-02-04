@@ -10,9 +10,28 @@ import SpriteKit
 
 class BoothScene: SKScene {
 
+    var girlNode: SKSpriteNode!
+    
+    //MARK: - Initializers
+    override init(size: CGSize) {
+        super.init(size: size)
+        setupPlayableRect()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupPlayableRect()
+    }
+    
+    //MARK: - Setup
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
+        girlNode = childNode(withName: "girl_node")
+        
+    }
+    
+    func setupPlayableRect() {
         
     }
 }
