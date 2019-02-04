@@ -150,6 +150,31 @@ class GameScene: SKScene {
         lastUpdateTime = currentTime
     }
     
+    func boundsCheckGirl() {
+        let bottomLeft = CGPoint(x: 0, y: playableRect.minY)
+        let topRight = CGPoint(x: size.width, y: playableRect.maxY)
+        print("bottom left is \(bottomLeft) topRight is :\(topRight)")
+        // if the girl reaches the far right of the screen, then we transition to a new scene
+        if girlTorso.position.x >= (size.width/2 - girlTorso.frame.size.width) {
+            //
+            // move on to the booth scene
+            print("Girl has left the scene")
+            guard let presentingView = view else { return }
+            
+            // this is a pain in the ass
+            //            let transition = SKTransition.crossFade(withDuration: 0.9)
+            //
+            //            if let boothScene = BoothScene(fileNamed: "BoothScene") {
+            //                presentingView.presentScene(boothScene)
+            //            }
+            // MARK: Move the camera method
+            
+        } else {
+            print("Girl has not left the scvene : \(girlTorso.position)")
+        }
+        
+    }
+    
     //MARK: - Touchies
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch: AnyObject in touches {
@@ -221,27 +246,7 @@ class GameScene: SKScene {
     var playableRect = CGRect.zero
     
     
-    func boundsCheckGirl() {
-        let bottomLeft = CGPoint(x: 0, y: playableRect.minY)
-        let topRight = CGPoint(x: size.width, y: playableRect.maxY)
-        print("bottom left is \(bottomLeft) topRight is :\(topRight)")
-        // if the girl reaches the far right of the screen, then we transition to a new scene
-        if girlTorso.position.x >= (size.width/2 - girlTorso.frame.size.width) {
-            //
-            // move on to the booth scene
-            print("Girl has left the scene")
-            guard let presentingView = view else { return }
-            
-            let transition = SKTransition.crossFade(withDuration: 0.9)
-         
-            if let boothScene = BoothScene(fileNamed: "BoothScene") {
-                presentingView.presentScene(boothScene)
-            }
-        } else {
-            print("Girl has not left the scvene : \(girlTorso.position)")
-        }
-        
-    }
+  
     
     let runningGirlScale: CGFloat = 1.0
     
