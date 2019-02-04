@@ -18,12 +18,25 @@ class GameScene: SKScene {
     //MARK: - Initializers
     override init(size: CGSize) {
         super.init(size: size)
+        setupPlayableRect()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        setupPlayableRect()
     }
     
+    func setupPlayableRect() {
+    //    let maxAspectRatio:CGFloat = 16.0/9.0
+        let maxAspectRatio: CGFloat = 19.5/9.0
+        let playableHeight = size.width / maxAspectRatio
+        let playableMargin = (size.height-playableHeight)/2.0
+        playableRect = CGRect(x: 0, y: playableMargin,
+                              width: size.width,
+                              height: playableHeight)
+    }
+    
+    //MARK: - Sounds
     
     func playBackgroundMusic() {
         guard let url = Bundle.main.url(forResource: GameScene.backgroundMusic, withExtension: "mp3") else { return }
@@ -38,9 +51,11 @@ class GameScene: SKScene {
         }
     }
     
+    
     //MARK: Lifecycle
     //MARK: - Setup
     override func didMove(to view: SKView) {
+        setupPlayableRect()
         
         backgroundColor = UIColor(red: 231/255, green: 227/255, blue: 178/255, alpha: 1.0)
         setupGirl()
@@ -100,6 +115,7 @@ class GameScene: SKScene {
     }
     
     private func setupGirl() {
+        let backgroundNode = childNode(withName: "background")
         girlTorso = childNode(withName: "girl_torso")
         girlTorso.zPosition = girlZ
         girlArmUpper = girlTorso.childNode(withName: "girl_front_arm_upper")
@@ -118,6 +134,8 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         updateTimeVariables(current: currentTime)
         updateGirlLocation()
+        
+        boundsCheckGirl()
         
        // print("There are \(oranges.children.count) children in oranges")
     }
@@ -200,7 +218,25 @@ class GameScene: SKScene {
         
     }
     
-      let runningGirlScale: CGFloat = 1.0
+    var playableRect = CGRect.zero
+    
+    
+    func boundsCheckGirl() {
+        let bottomLeft = CGPoint(x: 0, y: playableRect.minY)
+        let topRight = CGPoint(x: size.width, y: playableRect.maxY)
+        print("bottom left is \(bottomLeft) topRight is :\(topRight)")
+        // if the girl reaches the far right of the screen, then we transition to a new scene
+        if girlTorso.position.x >= (size.width/2 - girlTorso.frame.size.width) {
+            //
+            // move on to the booth scene
+            print("Girl has left the scene")
+        } else {
+            print("Girl has not left the scvene : \(girlTorso.position)")
+        }
+        
+    }
+    
+    let runningGirlScale: CGFloat = 1.0
     
     //MARKK: - Node Properties
     var girlScene: SKNode!
@@ -264,6 +300,7 @@ extension GameScene {
     }
     
     func moveGirlToward(location: CGPoint) {
+        print("\(#function) \(location)")
         // start animation
         let offset = location - girlTorso.position
         let direction = offset.normalized()
@@ -285,6 +322,8 @@ extension GameScene {
         } else {
             move(sprite: girlTorso, velocity: velocity, spriteXScale: runningGirlScale)
         }
+        
+    
     }
 }
 
