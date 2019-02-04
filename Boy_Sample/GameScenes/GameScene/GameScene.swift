@@ -15,6 +15,8 @@ class GameScene: SKScene {
     var dt: TimeInterval = 0
     var velocity = CGPoint.zero
     
+    let cameraNode = SKCameraNode()
+    
     //MARK: - Initializers
     override init(size: CGSize) {
         super.init(size: size)
@@ -72,6 +74,11 @@ class GameScene: SKScene {
         setupOranges()
         
         playBackgroundMusic()
+        
+        //MARK: Camera setup
+        addChild(cameraNode)
+        camera = cameraNode
+        cameraNode.position = CGPoint(x: size.width/2, y: size.height/2)
     }
     
     private func setupOranges() {
@@ -137,7 +144,7 @@ class GameScene: SKScene {
         
         boundsCheckGirl()
         
-       // print("There are \(oranges.children.count) children in oranges")
+       cameraNode.position = girlTorso.position
     }
     
     private func updateTimeVariables(current currentTime: TimeInterval) {
