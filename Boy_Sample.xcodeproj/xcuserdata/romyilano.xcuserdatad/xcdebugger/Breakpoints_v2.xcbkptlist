@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Boy_Sample/GameScenes/GameScene.swift"
-            timestampString = "570547550.95881"
+            timestampString = "570559765.601252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "didMove(to:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Boy_Sample/GameScenes/GameScene.swift"
-            timestampString = "570547550.958876"
+            timestampString = "570559765.601766"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "didMove(to:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -1,61 +1,13 @@
 import SpriteKit
 import CoreGraphics
-
+import AVFoundation
 
 
 class GameScene: SKScene {
+    var backgroundMusicPlayer: AVAudioPlayer?
     
-    
-    var girlScene: SKNode!
-    var girlNode: PersonNode!
-    var secondGirlTorso: SKNode!
-    
-    //MARK: - Boy
-    var boyTorso: SKNode!
-    
-    var upperTorso: SKNode!
-    var upperArmFront: SKNode!
-    var lowerArmFront: SKNode!
-    var headNode: SKNode!
-    
-    //MARK: - Girl
-    var girlFist: SKNode!
-    var girlTorso: SKNode!
-    var girlArmUpper: SKNode!
-    var girlArmLower: SKNode!
-    
-    var girlLegLower: SKNode!
-    var girlLegUpper: SKNode!
-    
-    let girlZ: CGFloat = 25
-    let boyZ: CGFloat = 20
-    let orangesZ: CGFloat = 15
-  
-    // MARK: - Objects
-    var backgroundNode: SKNode!
-    var oranges: SKNode!
-    
-    // MARK: Properties
-    var targetNode = SKNode()
-    
-    var fistFront: SKNode!
-    
-    var firstTouch = false
-    
-    //MARK: - Head positions
-    let headLowerLimit: CGFloat = -10.0
-    let headUpperLimit: CGFloat = 50.0
-    
-    //MARK: Reach Constraints
-    let upperArmAngleDeg: CGFloat = -10
-    let lowerArmAngleDeg: CGFloat = 85
-    
-    let lowerArmAngleLimit: CGFloat = 0
-    let lowerArmUppleAngleLimit: CGFloat = 160.0
-    
-    let upperArmLowerLimit: CGFloat = 0
-    let upperArmUpperLimit: CGFloat = 0
-    
+    static let backgroundMusic = "ambient2018jan20-quicktime"
+    // mp3
     //MARK: - Movement
     var lastTouchLocation: CGPoint?
     let runningMovePtsPerSecond: CGFloat = 360.0
@@ -72,6 +24,19 @@ class GameScene: SKScene {
         super.init(coder: aDecoder)
     }
     
+    
+    func playBackgroundMusic() {
+        guard let url = Bundle.main.url(forResource: GameScene.backgroundMusic, withExtension: "mp3") else { return }
+        do {
+            backgroundMusicPlayer = try AVAudioPlayer(contentsOf: url)
+            guard let backgroundMusicPlayer = backgroundMusicPlayer else { return }
+            backgroundMusicPlayer.numberOfLoops = -1
+            backgroundMusicPlayer.prepareToPlay()
+            backgroundMusicPlayer.play()
+        } catch let error {
+            print("Error loading music :\(error)")
+        }
+    }
     
     //MARK: Lifecycle
     //MARK: - Setup
@@ -90,6 +55,8 @@ class GameScene: SKScene {
       
         backgroundNode = childNode(withName: "background")
         setupOranges()
+        
+        playBackgroundMusic()
     }
     
     private func setupOranges() {
@@ -235,6 +202,56 @@ class GameScene: SKScene {
     
       let runningGirlScale: CGFloat = 1.0
     
+    //MARKK: - Node Properties
+    var girlScene: SKNode!
+    var girlNode: PersonNode!
+    var secondGirlTorso: SKNode!
+    
+    //MARK: - Boy
+    var boyTorso: SKNode!
+    
+    var upperTorso: SKNode!
+    var upperArmFront: SKNode!
+    var lowerArmFront: SKNode!
+    var headNode: SKNode!
+    
+    //MARK: - Girl
+    var girlFist: SKNode!
+    var girlTorso: SKNode!
+    var girlArmUpper: SKNode!
+    var girlArmLower: SKNode!
+    
+    var girlLegLower: SKNode!
+    var girlLegUpper: SKNode!
+    
+    let girlZ: CGFloat = 25
+    let boyZ: CGFloat = 20
+    let orangesZ: CGFloat = 15
+    
+    // MARK: - Objects
+    var backgroundNode: SKNode!
+    var oranges: SKNode!
+    
+    // MARK: Properties
+    var targetNode = SKNode()
+    
+    var fistFront: SKNode!
+    
+    var firstTouch = false
+    
+    //MARK: - Head positions
+    let headLowerLimit: CGFloat = -10.0
+    let headUpperLimit: CGFloat = 50.0
+    
+    //MARK: Reach Constraints
+    let upperArmAngleDeg: CGFloat = -10
+    let lowerArmAngleDeg: CGFloat = 85
+    
+    let lowerArmAngleLimit: CGFloat = 0
+    let lowerArmUppleAngleLimit: CGFloat = 160.0
+    
+    let upperArmLowerLimit: CGFloat = 0
+    let upperArmUpperLimit: CGFloat = 0
 
 }
 
