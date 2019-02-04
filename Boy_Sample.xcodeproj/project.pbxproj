@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		1C0DEFB721F780EA000B3C88 /* GameUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0DEFB621F780EA000B3C88 /* GameUtils.swift */; };
 		1C1EA9ED21F6B01100CAE7C4 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1EA9EC21F6B01100CAE7C4 /* CGFloat+Extensions.swift */; };
+		1C4873402207E26600FC7B0B /* BoothLady.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C48733A2207E26500FC7B0B /* BoothLady.swift */; };
+		1C4873412207E26600FC7B0B /* DreamWoman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C48733B2207E26600FC7B0B /* DreamWoman.swift */; };
+		1C4873422207E26600FC7B0B /* BoothLady.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1C48733C2207E26600FC7B0B /* BoothLady.sks */; };
+		1C4873432207E26600FC7B0B /* DreamWoman.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1C48733D2207E26600FC7B0B /* DreamWoman.sks */; };
+		1C4873442207E26600FC7B0B /* BoothScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C48733E2207E26600FC7B0B /* BoothScene.swift */; };
+		1C4873452207E26600FC7B0B /* BoothScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1C48733F2207E26600FC7B0B /* BoothScene.sks */; };
 		1C5A873021FAAA3E0025E014 /* GirlScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1C5A872F21FAAA3E0025E014 /* GirlScene.sks */; };
 		1C5A873221FAAA610025E014 /* GirlScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A873121FAAA610025E014 /* GirlScene.swift */; };
 		1C5A873521FAAC6D0025E014 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A873421FAAC6D0025E014 /* Constants.swift */; };
@@ -39,6 +45,12 @@
 		1C02B92D2201DCFA001BF466 /* ambient2018jan20.flac */ = {isa = PBXFileReference; lastKnownFileType = file; path = ambient2018jan20.flac; sourceTree = "<group>"; };
 		1C0DEFB621F780EA000B3C88 /* GameUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameUtils.swift; sourceTree = "<group>"; };
 		1C1EA9EC21F6B01100CAE7C4 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
+		1C48733A2207E26500FC7B0B /* BoothLady.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoothLady.swift; sourceTree = "<group>"; };
+		1C48733B2207E26600FC7B0B /* DreamWoman.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamWoman.swift; sourceTree = "<group>"; };
+		1C48733C2207E26600FC7B0B /* BoothLady.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BoothLady.sks; sourceTree = "<group>"; };
+		1C48733D2207E26600FC7B0B /* DreamWoman.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DreamWoman.sks; sourceTree = "<group>"; };
+		1C48733E2207E26600FC7B0B /* BoothScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoothScene.swift; sourceTree = "<group>"; };
+		1C48733F2207E26600FC7B0B /* BoothScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BoothScene.sks; sourceTree = "<group>"; };
 		1C5A872F21FAAA3E0025E014 /* GirlScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GirlScene.sks; sourceTree = "<group>"; };
 		1C5A873121FAAA610025E014 /* GirlScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GirlScene.swift; sourceTree = "<group>"; };
 		1C5A873421FAAC6D0025E014 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -116,6 +128,8 @@
 		1C4873392207E15900FC7B0B /* BoothLady */ = {
 			isa = PBXGroup;
 			children = (
+				1C48733A2207E26500FC7B0B /* BoothLady.swift */,
+				1C48733C2207E26600FC7B0B /* BoothLady.sks */,
 			);
 			path = BoothLady;
 			sourceTree = "<group>";
@@ -123,6 +137,10 @@
 		1C5A873321FAABD90025E014 /* GameScenes */ = {
 			isa = PBXGroup;
 			children = (
+				1C48733F2207E26600FC7B0B /* BoothScene.sks */,
+				1C48733E2207E26600FC7B0B /* BoothScene.swift */,
+				1C48733D2207E26600FC7B0B /* DreamWoman.sks */,
+				1C48733B2207E26600FC7B0B /* DreamWoman.swift */,
 				1C4873392207E15900FC7B0B /* BoothLady */,
 				1C4873372207E12800FC7B0B /* GameScene */,
 				1C4873382207E13900FC7B0B /* GirlScene */,
@@ -260,11 +278,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CEADC7721F50FC900C05C6B /* Main.storyboard in Resources */,
+				1C4873452207E26600FC7B0B /* BoothScene.sks in Resources */,
 				1CEADC6E21F50FC900C05C6B /* GameScene.sks in Resources */,
+				1C4873422207E26600FC7B0B /* BoothLady.sks in Resources */,
 				1C5A873021FAAA3E0025E014 /* GirlScene.sks in Resources */,
 				1CEADC7921F50FCB00C05C6B /* Assets.xcassets in Resources */,
 				1CEADC7C21F50FCB00C05C6B /* LaunchScreen.storyboard in Resources */,
 				1CEADC7021F50FC900C05C6B /* Actions.sks in Resources */,
+				1C4873432207E26600FC7B0B /* DreamWoman.sks in Resources */,
 				1CE6F51322020B630082F4E6 /* ambient2018jan20-quicktime.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,12 +306,15 @@
 			files = (
 				1CEADC7221F50FC900C05C6B /* GameScene.swift in Sources */,
 				1CEADC7421F50FC900C05C6B /* GameViewController.swift in Sources */,
+				1C4873412207E26600FC7B0B /* DreamWoman.swift in Sources */,
 				1C0DEFB721F780EA000B3C88 /* GameUtils.swift in Sources */,
 				1C1EA9ED21F6B01100CAE7C4 /* CGFloat+Extensions.swift in Sources */,
 				1C5A873521FAAC6D0025E014 /* Constants.swift in Sources */,
 				1C5A873721FACD4F0025E014 /* GirlNode.swift in Sources */,
 				1C5A873221FAAA610025E014 /* GirlScene.swift in Sources */,
 				1CEADC6C21F50FC900C05C6B /* AppDelegate.swift in Sources */,
+				1C4873402207E26600FC7B0B /* BoothLady.swift in Sources */,
+				1C4873442207E26600FC7B0B /* BoothScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
