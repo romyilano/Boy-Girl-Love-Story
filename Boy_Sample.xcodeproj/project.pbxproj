@@ -165,9 +165,9 @@
 		1C5A873321FAABD90025E014 /* GameScenes */ = {
 			isa = PBXGroup;
 			children = (
+				1C4873372207E12800FC7B0B /* GameScene */,
 				1C4873462207E2BD00FC7B0B /* BoothScene */,
 				1C4873472207FC8A00FC7B0B /* PeopleScenes */,
-				1C4873372207E12800FC7B0B /* GameScene */,
 				1CEADC6F21F50FC900C05C6B /* Actions.sks */,
 			);
 			path = GameScenes;
