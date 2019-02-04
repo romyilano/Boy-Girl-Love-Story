@@ -29,7 +29,7 @@ class GameScene: SKScene {
     }
     
     func setupPlayableRect() {
-    //    let maxAspectRatio:CGFloat = 16.0/9.0
+        //    let maxAspectRatio:CGFloat = 16.0/9.0
         let maxAspectRatio: CGFloat = 19.5/9.0
         let playableHeight = size.width / maxAspectRatio
         let playableMargin = (size.height-playableHeight)/2.0
@@ -61,7 +61,7 @@ class GameScene: SKScene {
         
         backgroundColor = UIColor(red: 231/255, green: 227/255, blue: 178/255, alpha: 1.0)
         setupGirl()
-  
+        
         setupBoy()
         
         girlScene = childNode(withName: "girl_shared")
@@ -69,7 +69,7 @@ class GameScene: SKScene {
             girlNode = girl2torso
         }
         girlScene.alpha = 0
-      
+        
         backgroundNode = childNode(withName: "background")
         setupOranges()
         
@@ -88,7 +88,7 @@ class GameScene: SKScene {
         let hoverUp = SKAction.move(by: CGVector(dx: 0, dy: 3), duration: 2.5)
         let hoverDown = SKAction.move(by: CGVector(dx: 0, dy: -3), duration: 2.5)
         let hoverSequence = SKAction.sequence([hoverUp, hoverDown])
-      //  let rotateRight = SKAction.rotate(byAngle: CGFloat(Float.pi), duration: 5.0)
+        //  let rotateRight = SKAction.rotate(byAngle: CGFloat(Float.pi), duration: 5.0)
         let rotateRight = SKAction.rotate(toAngle: CGFloat(Float.pi), duration: 5.0)
         let hoverGroup = SKAction.group([hoverSequence])
         let repeatHover = SKAction.repeatForever(hoverGroup)
@@ -118,7 +118,7 @@ class GameScene: SKScene {
         
         rotationConstraint.enabled = false
         orientNodeConstraint.enabled = false
-             headNode.constraints = [orientNodeConstraint, rotationConstraint]
+        headNode.constraints = [orientNodeConstraint, rotationConstraint]
     }
     
     private func setupGirl() {
@@ -144,7 +144,7 @@ class GameScene: SKScene {
         
         boundsCheckGirl()
         
-       cameraNode.position = girlTorso.position
+        cameraNode.position = girlTorso.position
     }
     
     private func updateTimeVariables(current currentTime: TimeInterval) {
@@ -208,10 +208,10 @@ class GameScene: SKScene {
         
         //MARK: handle turning
         boyTorso.xScale = location.x < frame.midX ? abs(boyTorso.xScale) * -1 : abs(boyTorso.xScale)
-       // girlTorso.xScale = location.x < frame.midX ? abs(girlTorso.xScale) * -1 : abs(girlTorso.xScale)
-       
+        // girlTorso.xScale = location.x < frame.midX ? abs(girlTorso.xScale) * -1 : abs(girlTorso.xScale)
+        
         moveGirlToward(location: location)
-      
+        
         
     }
     
@@ -221,7 +221,7 @@ class GameScene: SKScene {
         //MARK: Boy Actions
         let punchBoy = SKAction.reach(to: location, rootNode: upperArmFront, duration: 0.1)
         
-  
+        
         let delay = SKAction.wait(forDuration: 0.1)
         let pickFruit = SKAction.run { [weak self] in
             guard let strongSelf = self else { return }
@@ -253,7 +253,7 @@ class GameScene: SKScene {
     var playableRect = CGRect.zero
     
     
-  
+    
     
     let runningGirlScale: CGFloat = 1.0
     
@@ -307,7 +307,7 @@ class GameScene: SKScene {
     
     let upperArmLowerLimit: CGFloat = 0
     let upperArmUpperLimit: CGFloat = 0
-
+    
 }
 
 //MARK: - Sprite movement
@@ -342,7 +342,7 @@ extension GameScene {
             move(sprite: girlTorso, velocity: velocity, spriteXScale: runningGirlScale)
         }
         
-    
+        
     }
 }
 
