@@ -95,14 +95,38 @@
 			path = GameUtilities;
 			sourceTree = "<group>";
 		};
-		1C5A873321FAABD90025E014 /* GameScenes */ = {
+		1C4873372207E12800FC7B0B /* GameScene */ = {
 			isa = PBXGroup;
 			children = (
 				1CEADC6D21F50FC900C05C6B /* GameScene.sks */,
 				1CEADC7121F50FC900C05C6B /* GameScene.swift */,
-				1CEADC6F21F50FC900C05C6B /* Actions.sks */,
+			);
+			path = GameScene;
+			sourceTree = "<group>";
+		};
+		1C4873382207E13900FC7B0B /* GirlScene */ = {
+			isa = PBXGroup;
+			children = (
 				1C5A873121FAAA610025E014 /* GirlScene.swift */,
 				1C5A872F21FAAA3E0025E014 /* GirlScene.sks */,
+			);
+			path = GirlScene;
+			sourceTree = "<group>";
+		};
+		1C4873392207E15900FC7B0B /* BoothLady */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BoothLady;
+			sourceTree = "<group>";
+		};
+		1C5A873321FAABD90025E014 /* GameScenes */ = {
+			isa = PBXGroup;
+			children = (
+				1C4873392207E15900FC7B0B /* BoothLady */,
+				1C4873372207E12800FC7B0B /* GameScene */,
+				1C4873382207E13900FC7B0B /* GirlScene */,
+				1CEADC6F21F50FC900C05C6B /* Actions.sks */,
 			);
 			path = GameScenes;
 			sourceTree = "<group>";
