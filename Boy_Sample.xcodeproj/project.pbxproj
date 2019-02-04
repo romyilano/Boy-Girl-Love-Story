@@ -134,11 +134,19 @@
 			path = BoothLady;
 			sourceTree = "<group>";
 		};
-		1C5A873321FAABD90025E014 /* GameScenes */ = {
+		1C4873462207E2BD00FC7B0B /* BoothScene */ = {
 			isa = PBXGroup;
 			children = (
 				1C48733F2207E26600FC7B0B /* BoothScene.sks */,
 				1C48733E2207E26600FC7B0B /* BoothScene.swift */,
+			);
+			path = BoothScene;
+			sourceTree = "<group>";
+		};
+		1C5A873321FAABD90025E014 /* GameScenes */ = {
+			isa = PBXGroup;
+			children = (
+				1C4873462207E2BD00FC7B0B /* BoothScene */,
 				1C48733D2207E26600FC7B0B /* DreamWoman.sks */,
 				1C48733B2207E26600FC7B0B /* DreamWoman.swift */,
 				1C4873392207E15900FC7B0B /* BoothLady */,
