@@ -10,7 +10,7 @@ import SpriteKit
 
 class BoothScene: SKScene {
 
-    var girlNode: SKSpriteNode!
+    var girlNode: SKNode!
     
     //MARK: - Initializers
     override init(size: CGSize) {
@@ -28,6 +28,7 @@ class BoothScene: SKScene {
         super.didMove(to: view)
         
         girlNode = childNode(withName: "girl_node")
+        
         
     }
     

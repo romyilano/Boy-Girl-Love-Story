@@ -9,6 +9,9 @@
 import SpriteKit
 
 class GirlScene: SKScene {
+    
+    static let headLowerLimit: CGFloat = -10.0
+    static let headUpperLimit: CGFloat = 50.0
     //MARK: - Girl
     
     var girlHead: SKNode!// girl_head

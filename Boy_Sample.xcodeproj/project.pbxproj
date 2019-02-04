@@ -143,15 +143,23 @@
 			path = BoothScene;
 			sourceTree = "<group>";
 		};
+		1C4873472207FC8A00FC7B0B /* PeopleScenes */ = {
+			isa = PBXGroup;
+			children = (
+				1C4873382207E13900FC7B0B /* GirlScene */,
+				1C4873392207E15900FC7B0B /* BoothLady */,
+			);
+			path = PeopleScenes;
+			sourceTree = "<group>";
+		};
 		1C5A873321FAABD90025E014 /* GameScenes */ = {
 			isa = PBXGroup;
 			children = (
 				1C4873462207E2BD00FC7B0B /* BoothScene */,
 				1C48733D2207E26600FC7B0B /* DreamWoman.sks */,
 				1C48733B2207E26600FC7B0B /* DreamWoman.swift */,
-				1C4873392207E15900FC7B0B /* BoothLady */,
+				1C4873472207FC8A00FC7B0B /* PeopleScenes */,
 				1C4873372207E12800FC7B0B /* GameScene */,
-				1C4873382207E13900FC7B0B /* GirlScene */,
 				1CEADC6F21F50FC900C05C6B /* Actions.sks */,
 			);
 			path = GameScenes;
