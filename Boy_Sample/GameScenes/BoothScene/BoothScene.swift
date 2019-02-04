@@ -10,4 +10,9 @@ import SpriteKit
 
 class BoothScene: SKScene {
 
+    override func didMove(to view: SKView) {
+        super.didMove(to: view)
+        
+        
+    }
 }
